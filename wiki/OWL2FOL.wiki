@@ -2,9 +2,9 @@
 
 = Introduction =
 
-This page is dedicated to the interpretation of OWL2 as first-order logic.
+This page is dedicated to the interpretation of [http://www.w3.org/TR/owl2-syntax/ OWL2] as [http://en.wikipedia.org/wiki/First_order_logic first-order logic].
 
 
 = Details =
 
-The current supported interpretation implemented in Incerto can be download from [http://student.dei.uc.pt/~pcoliv/incerto/TranslationOWL2FOL.pdf here]
+The interpretation implemented in Incerto can be download from [http://student.dei.uc.pt/~pcoliv/incerto/TranslationOWL2FOL.pdf here]
