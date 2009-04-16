@@ -7,4 +7,4 @@ This page is dedicated to the interpretation of [http://www.w3.org/TR/owl2-synta
 
 = Details =
 
-The interpretation implemented in Incerto can be download from [http://student.dei.uc.pt/~pcoliv/incerto/TranslationOWL2FOL.pdf here]
+The interpretation implemented in Incerto can be download from [http://incerto.googlecode.com/files/TranslationOWL2FOL.pdf here]
