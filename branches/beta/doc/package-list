@@ -1,0 +1,13 @@
+pt.uc.dei.cms.incerto.engines
+pt.uc.dei.cms.incerto.exceptions
+pt.uc.dei.cms.incerto.firstorderlogic.model
+pt.uc.dei.cms.incerto.firstorderlogic.model.visitors
+pt.uc.dei.cms.incerto.firstorderlogic.parser
+pt.uc.dei.cms.incerto.interfaces.api
+pt.uc.dei.cms.incerto.interfaces.cli
+pt.uc.dei.cms.incerto.learners
+pt.uc.dei.cms.incerto.model
+pt.uc.dei.cms.incerto.onto
+pt.uc.dei.cms.incerto.test
+pt.uc.dei.cms.incerto.utils
+pt.uc.dei.cms.incerto.utils.settings
