@@ -162,7 +162,7 @@ public class visitorOWLAPI implements OWLObjectVisitor {
 		for(OWLAxiomAnnotationAxiom annotation: axiom.getAnnotationAxioms(ontology))
 		{
 			if(annotation.getAnnotation().isAnnotationByConstant())
-			{				
+			{		
 				if((annotation.getAnnotation().getAnnotationURI().compareTo(weightAnnotationURI) == 0))
 				{
 					try
@@ -180,7 +180,7 @@ public class visitorOWLAPI implements OWLObjectVisitor {
 					try
 					{
 						Double prob = Double.valueOf(annotation.getAnnotation().getAnnotationValueAsConstant().getLiteral());
-						return MarkovLogicUtils.prob2weight(prob);
+						return prob;
 					}catch(NumberFormatException nfe)
 					{
 						LoggerUtils.addWarning("Invalid Probability "+annotation.getAnnotation().getAnnotationValueAsConstant().getLiteral(),nfe);

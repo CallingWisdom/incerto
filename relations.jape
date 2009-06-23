@@ -1,0 +1,18 @@
+Phase: PropertyIdentifier
+Input: Relation SpaceToken Token
+
+rule: Relation
+(
+	({Token.string == "is"}{SpaceToken.kind == space}{Token.string == "a"}{SpaceToken.kind == space}{Token.string == "symptom"}{SpaceToken.kind == space}{Token.string == "of"})
+|
+	({Token.string == "is"}{SpaceToken.kind == space}{Token.string == "a"}{SpaceToken.kind == space}{Token.string == "symptom"}{SpaceToken.kind == space}{Token.string == "ofs"})
+|
+	({Token.string == "is"}{SpaceToken.kind == space}{Token.string == "a"}{SpaceToken.kind == space}{Token.string == "symptom"}{SpaceToken.kind == space}{Token.string == "ofes"})
+|
+	({Token.string == "is"}{SpaceToken.kind == space}{Token.string == "a"}{SpaceToken.kind == space}{Token.string == "sign"}{SpaceToken.kind == space}{Token.string == "ofs"})
+|
+	({Token.string == "is"}{SpaceToken.kind == space}{Token.string == "a"}{SpaceToken.kind == space}{Token.string == "sign"}{SpaceToken.kind == space}{Token.string == "of"})
+|
+	({Token.string == "is"}{SpaceToken.kind == space}{Token.string == "a"}{SpaceToken.kind == space}{Token.string == "sign"}{SpaceToken.kind == space}{Token.string == "ofes"})
+):relation -->
+:relation.Relation = {rule = "Relation"}

@@ -1,0 +1,112 @@
+Phase: Linguistic
+Options: control = appelt
+
+//ver proper nouns:  | {Token.category == NP} | {Token.category == NPS}
+// A Nominal is composed by one or more Nouns
+Macro: Nominal
+(
+	(
+		({Token.category == NN} | {Token.category == NNS} | {Token.category == NNPS} | {Token.category == NNP})
+		({SpaceToken.kind == space} | {Token.string=="-"})
+	)*
+	({Token.category == NN} | {Token.category == NNS} | {Token.category == NNPS} | {Token.category == NNP})
+)
+
+// An AdjectivePhrase is composed by one or more adjectives with an optional adverb at the beginning
+Macro: AdjectivePhrase
+(
+	(
+		({Token.category == RB} | {Token.category == RBR} | {Token.category == RBS})
+		{SpaceToken.kind == space}
+	)?
+	(
+		({Token.category == JJ} | {Token.category == JJR} | {Token.category == JJS})
+		{SpaceToken.kind == space}
+	)*
+	({Token.category == JJ} | {Token.category == JJR} | {Token.category == JJS})
+)
+
+//NounPhrase = (DT)? (CD)? (AP)? Nominal
+Rule: NounPhrase
+(
+	(
+		(
+			{Token.category == DT}
+			{SpaceToken.kind == space}
+		)?
+		(
+			{Token.category == CD}
+			{SpaceToken.kind == space}
+		)?
+		(
+			(AdjectivePhrase)
+			{SpaceToken.kind == space}
+		)?
+	):np_Modifiers
+	(Nominal):np_Head
+):np -->
+:np.NounPhrase = { rule = "NounPhrase" },
+:np_Head.Head = { rule = "NounPhrase" },
+:np_Modifiers.Modifiers = { rule = "NounPhrase" }
+
+
+/*
+
+//A NounPhrase is composed by an Head (i.e., the nominal) accompanied by a set of modifiers (determiners and adjectives) 
+Rule: NounPhrase
+(
+	(
+		{Token.category == DT}
+		{SpaceToken.kind == space}
+	)?
+	(
+		({Token.category == JJ}|{Token.category == VBG})
+		{SpaceToken.kind == space}
+	)*
+	(Nominal):np_Head
+):np -->
+:np.NounPhrase = { rule = "NounPhrase" },
+:np_Head.Head = { rule = "NounPhrase" }
+*/
+
+//A single noun phrase 
+Macro: SingleNounPhrase
+(
+	{NounPhrase}
+)
+
+//A NounPhrase list can be ended by (and|or) NP
+Macro: NounPhraseListEnd
+(
+	({Token.kind == punctuation})?
+	({SpaceToken.kind == space})?
+	({Token.string=="or"}|{Token.string=="and"})
+	{SpaceToken.kind == space}
+	(SingleNounPhrase)
+)
+
+//A NounPhrase list is composed by one or more NPs, separated by punctuation
+Macro: NounPhraseListElements
+(
+	(SingleNounPhrase)
+	(
+	{Token.kind == punctuation}
+	({SpaceToken.kind == space})?
+	(SingleNounPhrase)
+	)*
+)
+
+//A Nounphrase list
+Macro: NounPhrasesList
+(
+	(NounPhraseListElements)
+	(
+		(NounPhraseListEnd)
+	)*
+)
+
+//A relation as defined in the ontology
+Macro: SingleRelation
+(
+	{Relation}
+)

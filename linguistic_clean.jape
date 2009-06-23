@@ -1,0 +1,62 @@
+Phase: Linguistic_Clean
+Input: NounPhrase Relation SpaceToken Token
+Options: control = appelt
+
+//Remove some modifiers from the front of the NPs that could interfer with the extraction rules (e.g., "especially","specially","Such","such","including","other","another", and the ones that end relations)
+Rule: NounPhraseClean
+(
+	{NounPhrase}
+):np -->
+{
+	/*1 - Remove the NPs that interfer with extraction rules*/
+	//Get the Token annotations of the NP
+	gate.AnnotationSet np = (gate.AnnotationSet)bindings.get("np");
+	gate.AnnotationSet tokens = inputAS.get( np.firstNode().getOffset() ).get("Token");
+	//Sort the annotations
+	ArrayList<gate.Annotation> tokensList = new ArrayList<gate.Annotation>(tokens);
+	Collections.sort(tokensList, new gate.util.OffsetComparator());
+	//Compare the first token with the following strings
+	gate.Annotation token = tokensList.get(0); 	
+	String[] modifiers = {"especially","specially","Such","such","including","other","another","a","the","an"} ;
+	long npbegin = np.firstNode().getOffset();
+	long npend = np.lastNode().getOffset();
+	for(String name: modifiers)
+	{
+		if(token.getFeatures().get("string").equals(name))	//If the token equals one of the given tokens, remove it from the NP
+		{
+			npbegin = token.getEndNode().getOffset()+1;
+			break;
+		}
+	}
+	
+	/*2 - Remove from the NPs tokens that interfer with relations*/
+	//Get all the relations that precede the NP (in a predefined extension)
+	long start = npbegin-30;
+	if(start<0)
+		start = 0;
+	ArrayList<gate.Annotation> relations = new ArrayList<gate.Annotation>(inputAS.get("Relation",start,npend));
+	Collections.sort(relations, new gate.util.OffsetComparator());
+	long rend;
+	for(int i = relations.size()-1; i>=0; i--)
+	{
+		Annotation relation = relations.get(i);
+		rend = relation.getEndNode().getOffset();
+		if(rend>npbegin) //If the relation and the NP are somehow overlapped
+			npbegin = rend+1;	//The NP now starts at the end of the relation
+		/*else //Otherwise
+			break;	//There aren't more relations which overlap the NP (the offsets are sorted by the begin, so sometimes this could be false!!)*/
+	}
+	
+	/*3 - Savethe changes made to the NP*/
+	if(npbegin != np.firstNode().getOffset())	//If the begin of the NP was changed
+	{
+		try	//Remove the old NP, and add a new one(if it has a positive length),
+		{
+			if(npend>npbegin)
+				outputAS.add( npbegin, np.lastNode().getOffset(), "NounPhrase", ((gate.Annotation)np.iterator().next()).getFeatures());
+			inputAS.remove((gate.Annotation)((gate.AnnotationSet)np.get("NounPhrase")).iterator().next());
+		}catch ( InvalidOffsetException e ){
+				e.printStackTrace();
+		}
+	}
+}

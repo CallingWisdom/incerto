@@ -20,6 +20,7 @@ package pt.uc.dei.cms.incerto.engines;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.antlr.runtime.RecognitionException;
 
@@ -222,7 +223,7 @@ public class PyMLNs implements MarkovLogicEngine {
 	 * @param results
 	 * @return
 	 */
-	private ReasoningResults parseResults(ArrayList<String> results)
+	private ReasoningResults parseResults(List<String> results)
 	{
 		ReasoningResults res = new ReasoningResults();
 		for(String st: results)

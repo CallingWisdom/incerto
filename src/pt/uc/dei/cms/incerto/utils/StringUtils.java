@@ -73,8 +73,9 @@ public class StringUtils {
 		return st.replaceAll(" ", "");
 	}
 	
+	
 	/**
-	 * Mininum of three integers
+	 * Minimum of three integers
 	 * @param a
 	 * @param b
 	 * @param c

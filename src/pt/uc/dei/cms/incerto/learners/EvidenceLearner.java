@@ -18,10 +18,12 @@
 
 package pt.uc.dei.cms.incerto.learners;
 
+import pt.uc.dei.cms.incerto.exceptions.LearnerException;
+import pt.uc.dei.cms.incerto.learners.sources.OntologyPopulationSource;
 import pt.uc.dei.cms.incerto.model.Evidence;
 import pt.uc.dei.cms.incerto.model.MLN;
 
 public interface EvidenceLearner {
 
-	public Evidence learn(MLN mln);
+	public Evidence learn(MLN mln, OntologyPopulationSource source) throws LearnerException;
 }
