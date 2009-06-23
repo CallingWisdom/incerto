@@ -1,0 +1,107 @@
+Phase: OntologyPopulation
+Input: NounPhrase SpaceToken Token Head
+Options: control = brill
+
+// NP such as {NP,}* {(and|or)} NP
+rule: ClassAssertion1
+(
+	(SingleNounPhrase):class
+	({Token.kind == punctuation})?
+	({SpaceToken.kind == space})
+	({Token.string=="such"})
+	({SpaceToken.kind == space})
+	({Token.string=="as"})
+	({SpaceToken.kind == space})
+	(NounPhrasesList):instance
+):classAssertion
+-->
+:classAssertion.ClassAssertion = { rule = "ClassAssertion1" },
+:class.Class = { rule = "ClassAssertion1" },
+:instance.Instance = {  rule = "ClassAssertion1" }
+
+
+// such NP as {NP,}* {(and|or)} NP
+rule: ClassAssertion2
+(
+	({Token.string=="such"} | {Token.string=="Such"})
+	({SpaceToken.kind == space})
+	(SingleNounPhrase):class
+	({SpaceToken.kind == space})
+	({Token.string=="as"})
+	({SpaceToken.kind == space})
+	(NounPhrasesList):instance
+):classAssertion
+-->
+:classAssertion.ClassAssertion = { rule = "ClassAssertion2" },
+:class.Class = { rule = "ClassAssertion2" },
+:instance.Instance = {  rule = "ClassAssertion2" }
+
+
+// NP {,NP}* {,} (and|or) {all|every} other NP
+rule: ClassAssertion3
+(
+	(NounPhraseListElements):instance
+	({Token.kind == punctuation})?
+	{SpaceToken.kind == space}
+	({Token.string=="or"}|{Token.string=="and"})
+	(
+		{SpaceToken.kind == space}
+		({Token.string=="all"}|{Token.string=="every"})
+	)?
+	{SpaceToken.kind == space}
+	{Token.string=="other"}
+	{SpaceToken.kind == space}
+	(SingleNounPhrase):class
+):classAssertion
+-->
+:classAssertion.ClassAssertion = { rule = "ClassAssertion3"},
+:class.Class = { rule = "ClassAssertion3" },
+:instance.Instance = {  rule = "ClassAssertion3" }
+
+//NP {,} (including|{e}specially) {NP,}* {or|and} NP
+rule: ClassAssertion4
+(
+	(SingleNounPhrase):class
+	({Token.kind == punctuation})?
+	{SpaceToken.kind == space}
+	({Token.string=="especially"}|{Token.string=="specially"}|{Token.string=="including"})
+	{SpaceToken.kind == space}
+	(NounPhrasesList):instance
+):classAssertion
+-->
+:classAssertion.ClassAssertion = { rule = "ClassAssertion4" },
+:class.Class = { rule = "ClassAssertion4" },
+:instance.Instance = {  rule = "ClassAssertion4" }
+
+
+// NP like {NP,}* {(and|or)} NP
+rule: ClassAssertion5
+(
+	(SingleNounPhrase):class
+	({SpaceToken.kind == space})
+	({Token.string=="like"})
+	({SpaceToken.kind == space})
+	(NounPhrasesList):instance
+):classAssertion
+-->
+:classAssertion.ClassAssertion = { rule = "ClassAssertion5" },
+:class.Class = { rule = "ClassAssertion5" },
+:instance.Instance = {  rule = "ClassAssertion5" }
+
+// NP (is|are) (a|an|the)? NP
+rule: ClassAssertion6
+(
+	(NounPhrasesList):instance
+	{SpaceToken.kind == space}
+	({Token.string=="is"} | {Token.string=="are"})	
+	{SpaceToken.kind == space}
+	(
+		({Token.string=="a"}|{Token.string=="the"}|{Token.string=="an"})
+		{SpaceToken.kind == space}
+	)?
+	(SingleNounPhrase):class
+):classAssertion
+-->
+:classAssertion.ClassAssertion = { rule = "ClassAssertion6"},
+:class.Class = { rule = "ClassAssertion6" },
+:instance.Instance = {  rule = "ClassAssertion6" }

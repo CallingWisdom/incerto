@@ -20,6 +20,7 @@ package pt.uc.dei.cms.incerto.engines;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -223,7 +224,7 @@ public class Alchemy implements MarkovLogicEngine {
 	 * @param results
 	 * @return
 	 */
-	private ReasoningResults parseResults(ArrayList<String> results)
+	private ReasoningResults parseResults(List<String> results)
 	{
 		ReasoningResults res = new ReasoningResults();
 		for(String st: results)
@@ -266,7 +267,7 @@ public class Alchemy implements MarkovLogicEngine {
 	 */
 	private void parseResultMLN(String o) throws IOException
 	{
-		ArrayList<String> mln = InOutUtils.readListFromFile(o);
+		List<String> mln = InOutUtils.readListFromFile(o);
 		StringBuilder sb = new StringBuilder();
 		Pattern p = Pattern.compile("// [\\d-].*");	
 		Matcher m;

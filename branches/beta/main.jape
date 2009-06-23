@@ -1,0 +1,6 @@
+MultiPhase:	OntologyPopulator
+Phases:
+linguistic
+linguistic_clean
+classassertions
+propertyassertions

@@ -71,7 +71,7 @@ public class MarkovLogicEngineUtils {
 	
 	/**
 	 * Update a particular formula's weight <br>
-	 * If the formula is not found in the weighted MLN, it is chosen the most similar formula
+	 * If the formula is not found in the weighted MLN, the most similar formula is chosen
 	 * @param f
 	 * @param weights
 	 * @param visitor

@@ -33,6 +33,7 @@ import pt.uc.dei.cms.incerto.firstorderlogic.model.visitors.MLNVisitor;
 public class Predicate extends FormulaElement implements MLNElement, Cloneable{
 
 	protected String name;
+	protected String label;
 	protected ArrayList<Term> terms;
 
 
@@ -65,6 +66,14 @@ public class Predicate extends FormulaElement implements MLNElement, Cloneable{
 
 	public ArrayList<Term> getTerms() {
 		return terms;
+	}
+
+	public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
 	}
 
 	public void addTerm(Term term) {

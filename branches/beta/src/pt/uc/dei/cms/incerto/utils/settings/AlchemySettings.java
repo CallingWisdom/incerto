@@ -73,7 +73,7 @@ public class AlchemySettings {
 		LoggerUtils.addConfig("Alchemy most likely assignment inference tag: "+INFERENCE_MLA);
 	}
 	
-	public void setAlchemySettings(AlchemySettings settings)
+	public static void setAlchemySettings(AlchemySettings settings)
 	{
 		AlchemySettings.settings = settings;
 	}

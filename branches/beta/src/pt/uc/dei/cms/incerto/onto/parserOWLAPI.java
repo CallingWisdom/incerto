@@ -19,6 +19,7 @@
 package pt.uc.dei.cms.incerto.onto;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 
 
 import org.semanticweb.owl.apibinding.OWLManager;
@@ -66,14 +67,24 @@ public class parserOWLAPI implements Onto2MLN {
 		for(OWLAxiom a: ontology.getLogicalAxioms())
 			kb.addAxiom(a.toString());
 
+		Predicate p;
+		String label;
 		//if(!kb.isInvalid())
 		//{
 			//Add declarations
 			for(OWLClass cl: ontology.getReferencedClasses())
-				kb.addDeclaration(new Predicate(cl.toString(),Constant.Individual));
+			{
+				p = new Predicate(cl.toString(),Constant.Individual);
+				p.setLabel(OWLAPIUtils.getLabel(cl, ontology));
+				kb.addDeclaration(p);				
+			}
 			for(OWLObjectProperty op: ontology.getReferencedObjectProperties())
-				kb.addDeclaration(new Predicate(op.toString(),Constant.Individual,Constant.Individual));
-	
+			{
+				p = new Predicate(op.toString(),Constant.Individual,Constant.Individual);
+				p.setLabel(OWLAPIUtils.getLabel(op, ontology));
+				kb.addDeclaration(p);
+			}
+
 			//Add evidences
 			EvidencesOWLAPIVisitor ivisitor = new EvidencesOWLAPIVisitor(ontology);
 			kb = ivisitor.addEvidencesToMLN(kb);

@@ -1,0 +1,63 @@
+Phase: PropertyAssertions
+Input: NounPhrase Relation SpaceToken Token
+Options: control = brill
+
+
+// NP (is|are) (a|an|the)? <relation> NP
+rule: PropertyAssertion1
+(
+	(NounPhrasesList):sourceInstance
+	{SpaceToken.kind == space}
+	({Token.string=="is"} | {Token.string=="are"})	
+	{SpaceToken.kind == space}
+	(
+		({Token.string=="a"}|{Token.string=="the"}|{Token.string=="an"})
+		{SpaceToken.kind == space}
+	)?
+	(SingleRelation):property
+	{SpaceToken.kind == space}
+	(SingleNounPhrase):targetInstance
+):propertyAssertion
+-->
+:propertyAssertion.PropertyAssertion = { rule = "PropertyAssertion1"},
+:sourceInstance.SourceInstance = { rule = "PropertyAssertion1" },
+:property.Property = {  rule = "PropertyAssertion1" },
+:targetInstance.TargetInstance = { rule = "PropertyAssertion1" }
+
+
+// NP {,} <relation> NP
+rule: PropertyAssertion2
+(
+	(NounPhrasesList):sourceInstance
+	({Token.kind == punctuation})?
+	{SpaceToken.kind == space}
+	(SingleRelation):property
+	{SpaceToken.kind == space}
+	(SingleNounPhrase):targetInstance
+):propertyAssertion
+-->
+:propertyAssertion.PropertyAssertion = { rule = "PropertyAssertion2"},
+:sourceInstance.SourceInstance = { rule = "PropertyAssertion2" },
+:property.Property = {  rule = "PropertyAssertion2" },
+:targetInstance.TargetInstance = { rule = "PropertyAssertion2" }
+
+/*
+// NP , <relation> NP
+rule: PropertyAssertion3
+(
+	(NounPhrasesList):sourceInstance
+	({Token.kind == punctuation})?
+	{SpaceToken.kind == space}
+	(	
+		({Token} {SpaceToken.kind == space})*
+		({Token} {SpaceToken.kind == space})
+	):property
+	(SingleHead):targetInstance
+):propertyAssertion
+-->
+:propertyAssertion.PropertyAssertion = { rule = "PropertyAssertion3"},
+:sourceInstance.SourceInstance = { rule = "PropertyAssertion3" },
+:property.Property = {  rule = "PropertyAssertion3" },
+:targetInstance.TargetInstance = { rule = "PropertyAssertion3" }
+
+*/

@@ -26,6 +26,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.List;
 
 import pt.uc.dei.cms.incerto.utils.settings.IncertoSettings;
 
@@ -55,12 +56,29 @@ public class InOutUtils {
 	}
 	
 	/**
+	 * Writes List of Strings to file, one per line
+	 * @param filename
+	 * @param text
+	 * @return
+	 * @throws IOException
+	 */
+	public static int writeToFile(String filename, List<String> text) throws IOException
+	{
+		BufferedWriter bw;
+		bw = new BufferedWriter(new FileWriter(filename));
+		for(String st: text)
+			bw.write(st+"\n");
+		bw.close();
+		return 0;
+	}
+	
+	/**
 	 * Read List of String from file (one element for each line)
 	 * @param filename
 	 * @return
 	 * @throws IOException
 	 */
-	public static ArrayList<String> readListFromFile(String filename) throws IOException
+	public static List<String> readListFromFile(String filename) throws IOException
 	{
 		BufferedReader br;
 		ArrayList<String> res = new ArrayList<String>();
@@ -153,5 +171,16 @@ public class InOutUtils {
 			return path+IncertoSettings.FILE_SEPARATOR;
 		else 
 			return path;
+	}
+	
+	/**
+	 * Checks if the file is from a certain filetype, e.g., if a file is a .jar
+	 * @param filename
+	 * @param filetype
+	 * @return
+	 */
+	public static boolean isFromFileType(String filename, String filetype)
+	{
+		return filename.endsWith("."+filetype);		
 	}
 }
