@@ -275,7 +275,7 @@ public class Alchemy implements MarkovLogicEngine {
 		{
 			m = p.matcher(st);
 			if(m.matches())
-				sb.append(st.substring(3, st.length()-1)+"\n");	//Remove comment operators(//)
+				sb.append(st.substring(3, st.length())+"\n");	//Remove comment operators(//)
 		}
 		InOutUtils.writeToFile(o, sb.toString());
 	}

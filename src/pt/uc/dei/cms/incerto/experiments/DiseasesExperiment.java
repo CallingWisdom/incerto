@@ -34,15 +34,14 @@ public class DiseasesExperiment {
 	 * @throws Exception 
 	 */
 	public static void main(String[] args) throws Exception {
-		new DiseasesExperiment().doMain2();
-
+		new DiseasesExperiment().doMain();
 	}
 
 	public void doMain2() throws OntologyProcessorException, IOException
 	{
-		MLN mln = new parserOWLAPI().onto2MLN("d:/diseases.owl");
-		InOutUtils.writeToFile("d:/diseases.mln", new AlchemyVisitor().MLNELementToString(mln, true));
-		InOutUtils.writeToFile("d:/diseases.db", new AlchemyVisitor().MLNELementToString(new Evidence(mln.getEvidences()), true));
+		MLN mln = new parserOWLAPI().onto2MLN("C:/Documents and Settings/Pedro/Ambiente de trabalho/Incerto/Final Thesis/Experiments/hydrocarbons.owl");
+		InOutUtils.writeToFile("C:/Documents and Settings/Pedro/Ambiente de trabalho/Incerto/Final Thesis/Experiments/hydrocarbons.mln", new AlchemyVisitor().MLNELementToString(mln, true));
+		InOutUtils.writeToFile("C:/Documents and Settings/Pedro/Ambiente de trabalho/Incerto/Final Thesis/Experiments/hydrocarbons.db", new AlchemyVisitor().MLNELementToString(new Evidence(mln.getEvidences()), true));
 	}
 	
 	public void doMain() throws Exception
@@ -90,7 +89,7 @@ public class DiseasesExperiment {
 		
 		System.out.println("UnmatchedGoogle: "+unmatchedGoogle+"\tUnmatchedYahoo: "+unmatchedYahoo);
 		
-		saveToOntology(totalGood);
+		//saveToOntology(totalGood);
 	}
 
 
