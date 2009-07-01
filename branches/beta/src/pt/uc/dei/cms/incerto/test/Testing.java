@@ -46,6 +46,7 @@ public class Testing {
 		
 		System.out.println(vis.MLNELementToString(mln, true));
 		System.out.println(mln.getEvidences());
+		
 		/*
 		MLN mln = new parserOWLAPI().onto2MLN("d:/labels.owl");
 		GATEEvidenceLearner gate = new GATEEvidenceLearner();
