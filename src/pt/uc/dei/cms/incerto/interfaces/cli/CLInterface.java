@@ -80,10 +80,10 @@ public class CLInterface {
 		System.out.println("INCERTO HELP"); 
 		System.out.println("Required <>\tOptional []");
 		System.out.println("<-s <string>>\tSource ontology location.");
-		System.out.println("[-l <string>]\tOntology with individuals to learn the weights. If ommited, the individuals of the source ontology are used for this task.");
-		System.out.println("[-i <string>]\tOntology with individuals to be used in the inference process. If ommited, the individuals of the source ontology are used for this task.");
-		System.out.println("[-r <string>]\tResult file location. If ommited, results are written to the console.");
-		System.out.println("<-q <string>>\tQuery predicates. They can be composed by the name of a class or property(e.g., Person;isFatherOf) with (optional) aditional information about individuals (e.g., Person(Pedro);isFatherOf(x,Pedro)). Multiple query predicates can be added, separated by a semicolon (e.g., Person;Person(Pedro);isFatherOf;isFatherOf(x,Pedro) is a valid query). Free variables must be represented as lowercase digits.");
+		System.out.println("[-l <string>]\tOntology with individuals to learn the weights. If omitted, the individuals of the source ontology are used for this task.");
+		System.out.println("[-i <string>]\tOntology with individuals to be used in the inference process. If omitted, the individuals of the source ontology are used for this task.");
+		System.out.println("[-r <string>]\tResults file location. If omitted, results are written to the console.");
+		System.out.println("<-q <string>>\tQuery predicates. They can be composed by the name of a class or property(e.g., Person;isFatherOf) with (optional) additional information about individuals (e.g., Person(Pedro);isFatherOf(x,Pedro)). Multiple query predicates can be added, separated by a semicolon (e.g., Person;Person(Pedro);isFatherOf;isFatherOf(x,Pedro) is a valid query). Free variables must be represented as lowercase digits.");
 		System.out.println("[-e <string>]\tExtra first-order logic rules file location.");
 		System.out.println("[--disablewl]\tDisable weight learning.");
 		System.out.println("[--mla]\tIf set, instead of the probabilities, the most likely assignments to all query atoms are returned.");

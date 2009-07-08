@@ -224,18 +224,18 @@ public class Formula implements MLNElement, Cloneable{
 	public String toString()
 	{
 		StringBuilder sb = new StringBuilder();
-		
+		/*
 		if(!isHard())
 		{
 			sb.append(weight);
 			sb.append(' ');
 		}
-		
+		*/
 		for(FormulaElement element: elements)
 			sb.append(element);
-		
+		/*
 		if(isHard())
-			sb.append('.');
+			sb.append('.');*/
 		return sb.toString();
 	}
 	
