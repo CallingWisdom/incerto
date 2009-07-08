@@ -148,6 +148,16 @@ public class MLN implements MLNElement, Cloneable{
 		folrules.add(f);
 	}
 	
+	public void clearFormulas()
+	{
+		formulas.clear();
+	}
+	
+	public void clearEvidences()
+	{
+		evidences.clear();
+	}
+	
 	/**
 	 * Parse FOL rules from file.
 	 * @param extraFOLRulesLocation

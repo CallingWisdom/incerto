@@ -36,15 +36,15 @@ public class Test {
 	 * @throws OntologyProcessorException 
 	 */
 	public static void main(String[] args) throws OntologyProcessorException {
-		String onto = "piquena.owl";
+		String onto = "goldDLP.owl";
 
 		
-		MLN kb = new parserOWLAPI().onto2MLN("mnt/shared/onto/"+onto);
+		MLN kb = new parserOWLAPI().onto2MLN("d:/ontologies/"+onto);
 		
 		System.out.println(new AlchemyVisitor().MLNELementToString(kb, true));
 		
 		MarkovLogicEngine alchemy = IncertoSettings.getInstance().ML_ENGINE;
-		Query q = Query.parseQuery("A", true);
+		Query q = Query.parseQuery("ProblemLoan", true);
 		System.out.println(q);
 		try {
 			//System.out.println(alchemy.inference(kb, q));
