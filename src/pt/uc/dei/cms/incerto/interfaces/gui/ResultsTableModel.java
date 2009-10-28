@@ -5,6 +5,11 @@ import javax.swing.table.AbstractTableModel;
 import pt.uc.dei.cms.incerto.firstorderlogic.model.Formula;
 import pt.uc.dei.cms.incerto.model.ReasoningResults;
 
+/**
+ * TableModel for Results window
+ * @author Pedro Oliveira
+ *
+ */
 public class ResultsTableModel extends AbstractTableModel {
 
 	private ReasoningResults results;;
