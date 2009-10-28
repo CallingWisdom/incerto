@@ -1,11 +1,17 @@
 pt.uc.dei.cms.incerto.engines
 pt.uc.dei.cms.incerto.exceptions
+pt.uc.dei.cms.incerto.experiments
 pt.uc.dei.cms.incerto.firstorderlogic.model
 pt.uc.dei.cms.incerto.firstorderlogic.model.visitors
 pt.uc.dei.cms.incerto.firstorderlogic.parser
 pt.uc.dei.cms.incerto.interfaces.api
 pt.uc.dei.cms.incerto.interfaces.cli
+pt.uc.dei.cms.incerto.interfaces.gui
 pt.uc.dei.cms.incerto.learners
+pt.uc.dei.cms.incerto.learners.ontologypopulation
+pt.uc.dei.cms.incerto.learners.ontologypopulation.model
+pt.uc.dei.cms.incerto.learners.sources
+pt.uc.dei.cms.incerto.learners.sources.searchengines
 pt.uc.dei.cms.incerto.model
 pt.uc.dei.cms.incerto.onto
 pt.uc.dei.cms.incerto.test
