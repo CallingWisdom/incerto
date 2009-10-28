@@ -38,35 +38,23 @@ public class Test {
 	 */
 	public static void main(String[] args) throws OntologyProcessorException {
 		String onto = "advogato_smallexample.owl";
-
 		
 		MLN kb = new parserOWLAPI().onto2MLN("d:/ontologies/"+onto);
-		try {
-			kb = MLN.parseFOLRules("d:/ontologies/advogatoknowsrules.fol", kb);
-		} catch (IncertoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println(new AlchemyVisitor().MLNELementToString(kb, true));
-		/*
+		
 		MarkovLogicEngine alchemy = IncertoSettings.getInstance().ML_ENGINE;
 		Query q = Query.parseQuery("knows", true);
 		//System.out.println(q);
 		try {
-			//System.out.println(alchemy.inference(kb, q));
 			kb = MLN.parseFOLRules("d:/ontologies/advogatoknowsrules.fol", kb);
 			MLN mln = alchemy.weightlearning(kb, new Evidence(kb.getEvidences()));
 			System.out.println("MLN:\n"+mln);
 			ReasoningResults res = alchemy.inference(mln, new Evidence(kb.getEvidences()), q);
 			System.out.println(res);
-			//System.out.println(alchemy.inferencewithweightlearning(kb, new Evidence(kb.getEvidences()), q));
 		} catch (MarkovLogicEngineException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IncertoException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 
 	}
 
