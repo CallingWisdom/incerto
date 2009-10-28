@@ -19,11 +19,17 @@ import pt.uc.dei.cms.incerto.onto.parserOWLAPI;
 import pt.uc.dei.cms.incerto.utils.LoggerUtils;
 import pt.uc.dei.cms.incerto.utils.settings.IncertoSettings;
 
+/**
+ * Graphical User Interface (GUI)<br>
+ * Main Window
+ * @author Pedro Oliveira
+ *
+ */
 public class GUIMain extends javax.swing.JFrame {
 
 	private static final long serialVersionUID = 8268251975002579721L;
 	
-	/** Creates new form GUIMains */
+
     public GUIMain() {
         initComponents();
     }

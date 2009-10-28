@@ -6,6 +6,11 @@ import javax.swing.table.AbstractTableModel;
 
 import pt.uc.dei.cms.incerto.firstorderlogic.model.Formula;
 
+/**
+ * TableModel for axioms in the Main Window
+ * @author Pedro Oliveira
+ *
+ */
 public class AxiomsTableModel extends AbstractTableModel {
 	
 	private ArrayList<InternalAxiom> elements;

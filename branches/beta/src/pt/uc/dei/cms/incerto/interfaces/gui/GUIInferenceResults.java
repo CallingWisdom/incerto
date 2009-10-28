@@ -2,6 +2,12 @@ package pt.uc.dei.cms.incerto.interfaces.gui;
 
 import pt.uc.dei.cms.incerto.model.ReasoningResults;
 
+/**
+ * Graphical User Interface (GUI)<br>
+ * Results Window
+ * @author Pedro Oliveira
+ *
+ */
 public class GUIInferenceResults extends javax.swing.JFrame {
 
     /** Creates new form GUIInferenceResults */
